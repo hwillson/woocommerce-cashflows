@@ -9,7 +9,7 @@
  * @license    http://opensource.org/licenses/MIT
  */
 
-if (!defined('ABSPATH')) exit; // Exit if accessed directly
+if (!defined('ABSPATH')) exit;
 
 /**
  * Provides a CashFlows Payment Gateway.
