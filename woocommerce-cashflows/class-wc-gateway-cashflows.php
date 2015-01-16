@@ -16,24 +16,24 @@ if (!defined('ABSPATH')) exit;
  */
 class WC_Gateway_Cashflows extends WC_Payment_Gateway {
 
-	public function __construct() {
+  public function __construct() {
 
-		$this->test = intVal(preg_match('/\/beta\//', __FILE__));
-	  $this->id = 'cashflows';
-	  $this->has_fields = false;
-	  $this->method_title = __('CashFlows', 'woocommerce');
-	  $this->init_form_fields();
-	  $this->init_settings();
-		$this->title = $this->get_option('title');
+    $this->test = intVal(preg_match('/\/beta\//', __FILE__));
+    $this->id = 'cashflows';
+    $this->has_fields = false;
+    $this->method_title = __('CashFlows', 'woocommerce');
+    $this->init_form_fields();
+    $this->init_settings();
+    $this->title = $this->get_option('title');
 
-	  add_action(
-	    'woocommerce_update_options_payment_gateways_' . $this->id,
-	    array($this, 'process_admin_options'));
+    add_action(
+      'woocommerce_update_options_payment_gateways_' . $this->id,
+      array($this, 'process_admin_options'));
 
-		// Payment listener/API hook
-		add_action(
-		  'woocommerce_api_wc_gateway_cashflows',
-		  array($this, 'cashflows_callback'));
+    // Payment listener/API hook
+    add_action(
+      'woocommerce_api_wc_gateway_cashflows',
+      array($this, 'cashflows_callback'));
 
 	}
 
