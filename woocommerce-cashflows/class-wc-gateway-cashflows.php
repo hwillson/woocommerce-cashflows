@@ -35,37 +35,37 @@ class WC_Gateway_Cashflows extends WC_Payment_Gateway {
       'woocommerce_api_wc_gateway_cashflows',
       array($this, 'cashflows_callback'));
 
-	}
+  }
 
-	public function init_form_fields() {
-	  $this->form_fields =
-	    array(
-	      'enabled' => array(
-	        'title' => __( 'Enable/Disable', 'woocommerce' ),
-					'type' => 'checkbox',
-					'label' => __( 'Enable CashFlows', 'woocommerce' ),
-					'default' => 'yes'
-	      ),
-	      'title' => array(
-					'title' => __('Title', 'woocommerce'),
-					'type' => 'text',
-					'description' =>
-						__('This controls the title which the user sees during checkout.',
-							'woocommerce'),
-					'default' => __('CashFlows', 'woocommerce'),
-					'desc_tip' => true,
-				)
-	    );
-	}
+  public function init_form_fields() {
+    $this->form_fields =
+      array(
+        'enabled' => array(
+          'title' => __( 'Enable/Disable', 'woocommerce' ),
+          'type' => 'checkbox',
+          'label' => __( 'Enable CashFlows', 'woocommerce' ),
+          'default' => 'yes'
+        ),
+        'title' => array(
+          'title' => __('Title', 'woocommerce'),
+          'type' => 'text',
+          'description' =>
+            __('This controls the title which the user sees during checkout.',
+              'woocommerce'),
+          'default' => __('CashFlows', 'woocommerce'),
+          'desc_tip' => true,
+        )
+      );
+  }
 
-	public function process_payment($order_id) {
-		return array(
-			'result' => 'success',
-			'redirect' =>
-				($this->test ? '/beta' : '')
-					. "/?wc-api=WC_Gateway_Cashflows&order_id=$order_id"
-		);
-	}
+  public function process_payment($order_id) {
+    return array(
+      'result' => 'success',
+      'redirect' =>
+        ($this->test ? '/beta' : '')
+          . "/?wc-api=WC_Gateway_Cashflows&order_id=$order_id"
+    );
+  }
 
   public function cashflows_callback() {
 
@@ -134,7 +134,7 @@ class WC_Gateway_Cashflows extends WC_Payment_Gateway {
       $description .= 'Partial Payment';
     }
     $description =
-			html_entity_decode(strip_tags($description), ENT_COMPAT, 'UTF-8');
+      html_entity_decode(strip_tags($description), ENT_COMPAT, 'UTF-8');
 
     $secret_key = 'SECRET_KEY_GOES_HERE';
     $store_id = 'STORE_ID_GOES_HERE';
@@ -144,7 +144,7 @@ class WC_Gateway_Cashflows extends WC_Payment_Gateway {
       hash(
         'sha256',
         "$secret_key:$store_id:$cart_id:$total:$currency:"
-					. $this->test . ":$description");
+          . $this->test . ":$description");
 
     $name = $order->billing_first_name . ' ' . $order->billing_last_name;
     $address =
