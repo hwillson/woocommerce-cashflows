@@ -19,16 +19,16 @@ class WC_Gateway_Cashflows extends WC_Payment_Gateway {
 	public function __construct() {
 
 		$this->test = intVal(preg_match('/\/beta\//', __FILE__));
-    $this->id = 'cashflows';
-    $this->has_fields = false;
-    $this->method_title = __('CashFlows', 'woocommerce');
-    $this->init_form_fields();
-    $this->init_settings();
+	  $this->id = 'cashflows';
+	  $this->has_fields = false;
+	  $this->method_title = __('CashFlows', 'woocommerce');
+	  $this->init_form_fields();
+	  $this->init_settings();
 		$this->title = $this->get_option('title');
 
-    add_action(
-      'woocommerce_update_options_payment_gateways_' . $this->id,
-      array($this, 'process_admin_options'));
+	  add_action(
+	    'woocommerce_update_options_payment_gateways_' . $this->id,
+	    array($this, 'process_admin_options'));
 
 		// Payment listener/API hook
 		add_action(
@@ -37,16 +37,16 @@ class WC_Gateway_Cashflows extends WC_Payment_Gateway {
 
 	}
 
-  public function init_form_fields() {
-    $this->form_fields =
-      array(
-        'enabled' => array(
-          'title' => __( 'Enable/Disable', 'woocommerce' ),
+	public function init_form_fields() {
+	  $this->form_fields =
+	    array(
+	      'enabled' => array(
+	        'title' => __( 'Enable/Disable', 'woocommerce' ),
 					'type' => 'checkbox',
 					'label' => __( 'Enable CashFlows', 'woocommerce' ),
 					'default' => 'yes'
-        ),
-        'title' => array(
+	      ),
+	      'title' => array(
 					'title' => __('Title', 'woocommerce'),
 					'type' => 'text',
 					'description' =>
@@ -55,17 +55,17 @@ class WC_Gateway_Cashflows extends WC_Payment_Gateway {
 					'default' => __('CashFlows', 'woocommerce'),
 					'desc_tip' => true,
 				)
-      );
-  }
+	    );
+	}
 
-  public function process_payment($order_id) {
+	public function process_payment($order_id) {
 		return array(
 			'result' => 'success',
 			'redirect' =>
 				($this->test ? '/beta' : '')
 					. "/?wc-api=WC_Gateway_Cashflows&order_id=$order_id"
 		);
-  }
+	}
 
   public function cashflows_callback() {
 

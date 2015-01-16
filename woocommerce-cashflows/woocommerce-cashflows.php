@@ -28,8 +28,8 @@ if (in_array('woocommerce/woocommerce.php',
 
     }
 
-  	global $wc_cashflows;
-  	$wc_cashflows = new WC_Cashflows();
+    global $wc_cashflows;
+    $wc_cashflows = new WC_Cashflows();
 
   }
 
